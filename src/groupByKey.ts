@@ -1,9 +1,8 @@
-type GroupsMap<T> = {
-  [key: string]: T[];
-};
-
-export function groupByKey<T>(items: T[], key: keyof T): GroupsMap<T> {
-  const grouped: GroupsMap<T> = {};
+export function groupByKey<T, K extends keyof T>(
+  items: T[],
+  key: K,
+): Record<string, T[]> {
+  const grouped: Record<string, T[]> = Object.create(null);
 
   for (const item of items) {
     const groupKey = String(item[key]);
